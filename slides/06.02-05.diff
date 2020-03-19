@@ -1,0 +1,17 @@
+# Rename to use business concepts
+
+async function getCancellationEmailTemplate(
+  operator: Operator,
+-  GrandCentral: SourcesRepository
++  sourcesRepository: SourcesRepository
+): EmailTemplate {
+  const template = await getOperatorCancellationEmailTemplate(operator);
+
+  if (!template) {
+-    const source = await GrandCentral.getSource(operator.source_id);
++    const source = await sourcesRepository.getSource(operator.source_id);
+    return getSourceCancellationEmailTemplate(operator, source);
+  }
+
+  return template;
+}

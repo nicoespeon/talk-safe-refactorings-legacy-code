@@ -1,0 +1,6 @@
+# Update the clients/grand-central.ts adapter
+
+- class GrandCentral {
++ class GrandCentral implements SourcesRepository {
+  // …
+}

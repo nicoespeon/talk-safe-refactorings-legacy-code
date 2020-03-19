@@ -1,0 +1,24 @@
+# Inline Function to each caller
+
+async function getCancellationEmailTemplate(operator, SourceRepository) {
+  xxxnew_getCancellationEmailTemplate(SourceRepository, operator)
+}
+
+async function xxxnew_getCancellationEmailTemplate(SourceRepository, operator) {
+  const template = await getOperatorCancellationEmailTemplate(operator);
+
+  if (!template) {
+    const source = await SourceRepository.getSource(operator.source_id);
+    return getSourceCancellationEmailTemplate(operator, source);
+  }
+
+  return template;
+}
+
+// … at many places
+
+- getCancellationEmailTemplate(operator, GrandCentral);
++ xxxnew_getCancellationEmailTemplate(GrandCentral, operator);
+getCancellationEmailTemplate(operator, GrandCentral);
+getCancellationEmailTemplate(operator, GrandCentral);
+getCancellationEmailTemplate(operator, GrandCentral);

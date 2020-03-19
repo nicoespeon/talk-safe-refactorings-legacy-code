@@ -1,0 +1,6 @@
+# Define a new interface in the business
+
++ interface SourcesRepository {
++   getSource(id: Source["id"]): Promise<Source>;
++ }
+

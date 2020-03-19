@@ -1,0 +1,24 @@
+# Replace function body with call to new function
+
+async function getCancellationEmailTemplate(operator, SourceRepository) {
+-  const template = await getOperatorCancellationEmailTemplate(operator);
+-
+-  if (!template) {
+-    const source = await SourceRepository.getSource(operator.source_id);
+-    return getSourceCancellationEmailTemplate(operator, source);
+-  }
+-
+-  return template;
++  xxxnew_getCancellationEmailTemplate(SourceRepository, operator)
+}
+
+async function xxxnew_getCancellationEmailTemplate(SourceRepository, operator) {
+  const template = await getOperatorCancellationEmailTemplate(operator);
+
+  if (!template) {
+    const source = await SourceRepository.getSource(operator.source_id);
+    return getSourceCancellationEmailTemplate(operator, source);
+  }
+
+  return template;
+}

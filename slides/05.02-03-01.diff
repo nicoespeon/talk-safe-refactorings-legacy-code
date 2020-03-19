@@ -1,0 +1,21 @@
+# Then, use the new parameter in the function body (still compiles)
+
+import GrandCentral from "../../clients/grand-central";
+
+async function getCancellationEmailTemplate(operator, xxx_GrandCentral) {
+  const template = await getOperatorCancellationEmailTemplate(operator);
+
+  if (!template) {
+-    const source = await GrandCentral.getSource(operator.source_id);
++    const source = await xxx_GrandCentral.getSource(operator.source_id);
+    return getSourceCancellationEmailTemplate(operator, source);
+  }
+
+  return template;
+}
+
+// … somewhere else
+
+import GrandCentral from "../../clients/grand-central";
+
+getCancellationEmailTemplate(operator, GrandCentral);
